@@ -50,3 +50,4 @@ export async function fetchImages(query, page) {
         });
     }
 }
+

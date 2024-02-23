@@ -29,3 +29,5 @@ document.querySelector('#load-more').addEventListener('click', () => {
     page += 1;
     fetchImages(query, page);
 });
+
+
