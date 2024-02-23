@@ -21,13 +21,13 @@ form.addEventListener('submit', (event) => {
         });
         return;
     }
-    fetchImages(query, page);
+    fetchImages(query, page, true);
     input.value = '';
 });
 
 document.querySelector('#load-more').addEventListener('click', () => {
     page += 1;
-    fetchImages(query, page);
+    fetchImages(query, page, false);
 });
 
 

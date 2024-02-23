@@ -1,8 +1,11 @@
 import { lightbox } from '../main.js';
 
-export function createGalleryMarkup(images) {
+export function createGalleryMarkup(images, clearGallery) {
   const gallery = document.querySelector('.gallery');
-  gallery.innerHTML = '';
+  // gallery.innerHTML = '';
+  if (clearGallery) {
+    gallery.innerHTML = '';
+  }
   const markup = images
     .map((image) => `
       <div class="photo-card">
