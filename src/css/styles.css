@@ -72,7 +72,7 @@ button#load-more {
 
 .gallery {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 10px;
   /* display: flex;
   flex-wrap: wrap;
@@ -104,5 +104,27 @@ button#load-more {
   text-align: center;
   padding: 8px;
   justify-content: center;
+}
 
+.loader {
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid #3498db;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 2s linear infinite;
+  margin: 20px auto;
+  /*  отступы для центрирования */
+  display: none;
+  /* Начнем с скрытого состояния */
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
