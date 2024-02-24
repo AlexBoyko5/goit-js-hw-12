@@ -8,6 +8,26 @@ const API_KEY = '42334631-07f239856d3b6a49db441bfb9';
 let totalHits = 0;
 let imagesShown = 0;
 
+// Функция дебаунсинга
+function debounce(func, delay) {
+    let debounceTimer;
+    return function (...args) {
+        const context = this;
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(() => func.apply(context, args), delay);
+    };
+}
+
+// Функция прокрутки
+function scrollGallery() {
+    const galleryCard = document.querySelector('.photo-card');
+    const cardHeight = galleryCard.getBoundingClientRect().height;
+    window.scrollBy({ top: cardHeight * 2, behavior: 'smooth' });
+}
+
+// Дебаунсинговая версия функции прокрутки
+const debouncedScrollGallery = debounce(scrollGallery, 100);
+
 export async function fetchImages(query, page) {
     const loader = document.querySelector('.loader');
     const loadMoreButton = document.querySelector('#load-more');
@@ -34,11 +54,7 @@ export async function fetchImages(query, page) {
         } else {
             createGalleryMarkup(response.data.hits);
             lightbox.refresh();
-            setTimeout(() => {
-                const galleryCard = document.querySelector('.photo-card');
-                const cardHeight = galleryCard.getBoundingClientRect().height;
-                window.scrollBy({ top: cardHeight * 2, behavior: 'smooth' });
-            }, 100);
+            debouncedScrollGallery(); //Дебаунсинговая функция
             loadMoreButton.style.display = 'block'; // Показываем кнопку Load more после загрузки
         }
     } catch (error) {

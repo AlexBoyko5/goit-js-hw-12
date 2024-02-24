@@ -19,6 +19,7 @@ form.addEventListener('submit', (event) => {
     const loader = document.querySelector('.loader');
     loader.style.display = 'block';
     if (!query) {
+        loader.style.display = 'none';
         iziToast.warning({
             title: 'Warning',
             message: 'Please enter a search query',
